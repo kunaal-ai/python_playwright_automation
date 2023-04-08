@@ -1,5 +1,8 @@
 from playwright.sync_api import Page
+from pages.search import DuckDuckSearchPage
+
 def test_basic_google(page:Page) -> None:
-    page.goto("https://duckduckgo.com/")
-    page.get_by_placeholder('Search the web without being tracked').fill("TEST")
-    page.keyboard.press("Enter")
+    search_page = DuckDuckSearchPage(page)
+    search_page.load()
+    search_page.search('Panda')
+    page.keyboard.press('Enter')
